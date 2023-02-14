@@ -1,2 +1,2 @@
 #!/bin/bash
-tail -n+2 | cut -f1 | sort -i | uniq -c | tail -n+2 | sort -nr | cut -c 7- | cut -d " " -f2 | head -n11
+tail -n+2 | cut -f1 | sort | uniq -c | tail -n+2 | sort -nr | cut -c 7- | cut -d " " -f2 | head -n11

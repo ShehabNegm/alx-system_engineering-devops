@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# script to display ls output formated
+files=$(ls)
+for i in $files
+do
+   echo "$i" | cut -d "-" -f 2
+done
+

@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 # test checking for a file school
-if [ -e school ]; then
-  echo "school file exists"
-  if [ -s school ]; then
-     echo "school file is not empty"
+file="school"
+if [ -e $file ]; then
+  echo "$file file exists"
+  if [ -s $file ]; then
+     echo "$file file is not empty"
   else
-     echo "school file is not empty"
+     echo "$file file is empty"
   fi
-  if [ -f school ]; then
-     echo "school is a reglar file"
+  if [ -f $file ]; then
+     echo "$file is a reglar file"
   fi
 else
-     echo "school file does not exist"
+     echo "$file file does not exist"
 fi

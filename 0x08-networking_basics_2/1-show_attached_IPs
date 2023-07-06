@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script to show the current IPv4
+
+ifconfig | grep -w inet | cut -d " " -f10

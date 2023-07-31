@@ -13,7 +13,7 @@
 
 ### 2-secured_and_monitored_web_infrastructure
 
-![2-secured_and_monitored_web_infrastructure](https://i.imgur.com/1CtCS99.png)
+![2-secured_and_monitored_web_infrastructure](https://i.imgur.com/9sKfL1t.png)
 
 
 ### 3-scale_up (Advanced Task)

@@ -18,4 +18,4 @@
 
 ### 3-scale_up (Advanced Task)
 
-![3-scale_up](https://imgur.com/a/v8uOSOW)
+![3-scale_up](https://i.imgur.com/1CtCS99.png)

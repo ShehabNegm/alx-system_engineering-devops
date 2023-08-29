@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# install nginx on the server and make 404 error
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo mkdir -p /etc/nginx/html
+sudo touch /etc/nginx/html/index.html
+sudo touch /etc/nginx/html/error.html
+sudo echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error.html
+sudo sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
+re_string="location /redirect_me {\n return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}\n"
+sudo sed -i "30i $re_string" /etc/nginx/sites-available/default
+sudo sed -i "33i error_page 404 /error.html;" /etc/nginx/sites-available/default
+sudo service nginx restart
+

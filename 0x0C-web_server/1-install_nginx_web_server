@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# install nginx on the server and create default html page
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo mkdir -p /etc/nginx/html
+sudo touch /etc/nginx/html/index.html
+sudo echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
+sudo service nginx restart
+

@@ -1,34 +1,35 @@
-# 2-puppet_custom_http_response_header.pp
+# puppet manifest creating a custom HTTP header response
+exec { 'sudo apt-get-update':
+  command => '/usr/bin/apt-get update',
+}
 
-Facter.add('custom_hostname') do
-  setcode 'hostname'
-end
-
-# Install Nginx
 package { 'nginx':
-  ensure => 'installed',
+  ensure  => installed,
+  require => Exec['sudo apt-get-update'],
 }
 
-# Create a custom Nginx configuration file
-file { '/etc/nginx/conf.d/custom_headers.conf':
+file_line { 'a':
   ensure  => 'present',
-  content => "
-server {
-    listen 80 default_server;
-    server_name _;
-
-    location / {
-        add_header X-Served-By $::custom_hostname;
-        # Your other location settings here
-    }
-}
-",
-  notify  => Service['nginx'],
+  path    => '/etc/nginx/sites-available/default',
+  after   => 'listen 80 default_server;',
+  line    => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+  require => Package['nginx'],
 }
 
-# Ensure Nginx service is running and enabled
+file_line { 'b':
+  ensure  => 'present',
+  path    => '/etc/nginx/sites-available/default',
+  after   => 'listen 80 default_server;',
+  line    => 'add_header X-Served-By $hostname;',
+  require => Package['nginx'],
+}
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+  require => Package['nginx'],
+}
+
 service { 'nginx':
-  ensure    => 'running',
-  enable    => true,
-  require   => File['/etc/nginx/conf.d/custom_headers.conf'],
+  ensure  => running,
+  require => Package['nginx'],
 }

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # server nginx debugging
-sudo sed '/listen [::]:80 ipv6only=on/d' '/etc/nginx/sites-enabled/default'
+sudo sed '/listen [::]:80 ipv6only=on/d' /etc/nginx/sites-enabled/default
 sudo service nginx start

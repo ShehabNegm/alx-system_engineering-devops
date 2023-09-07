@@ -13,14 +13,16 @@ echo "frontend web-front
         mode http
         bind *:80
         default_backend web-backend
+	option h1-case-adjust-bogus-client
 
 backend web-backend
         mode http
         balance roundrobin
         server 280474-web-01 3.83.253.154:80 check
         server 280474-web-02 52.91.133.125:80 check
-	option h1-case-adjust-bogus-client
+
 global
-	h1-case-adjust x-served-by X-Served-By
+        h1-case-adjust x-served-by X-Served-By
 " | sudo tee -a /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
 sudo service haproxy start

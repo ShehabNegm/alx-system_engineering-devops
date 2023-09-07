@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 # server nginx debugging
-sudo sed -i '21s/.*/\tlisten 80 default_server;/' /etc/nginx/sites-available/default
-sudo sed -i '22s/.*/\tlisten [::]:80 default_server;/' /etc/nginx/sites-available/default
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+sudo sed -i 's/8080 default_server/80 default_server/g' /etc/nginx/sites-enabled/default
 sudo service nginx restart

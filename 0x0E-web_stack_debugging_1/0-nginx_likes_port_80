@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # server nginx debugging
-sudo sed -i 's/8080 default_server/80 default_server/g' /etc/nginx/sites-enabled/default
-sudo sed -i 's/8080 default_server/80 default_server/g' /etc/nginx/sites-available/default
-sudo service nginx restart
+new_string="listen 80 default_server;"
+old_string="listen 8080 default_server;"
+sudo sed -i "s/$old_string/$new_string/" /etc/nginx/sites-enabled/default
+sudo sed -i '22d' /etc/nginx/sites-enabled/default
+sudo service nginx start

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# script to check the ip of subdomains
+#shellcheck disable=SC2086
+subs=("www" "lb-01" "web-01" "web-02")
+
+if [ $# -eq 2 ]; then
+   echo -n "The subdomain $2"
+   dig $2.$1 | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print " is a " $4 " record and points to " $5}'
+
+else
+    for s in "${subs[@]}"; do
+        echo -n "The subdomain $s"
+        dig $s.$1 | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print " is a " $4 " record and points to " $5}'
+    done
+fi

@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """using REST API"""
 
+import json
 import requests
 from sys import argv
-import json
 
 
 if __name__ == "__main__":

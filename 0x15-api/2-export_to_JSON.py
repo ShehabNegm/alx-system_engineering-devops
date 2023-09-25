@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """using REST API"""
 
-import csv
 import json
+from collections import OrderedDict
 import requests
 from sys import argv
 
@@ -19,16 +19,16 @@ if __name__ == "__main__":
 
     tasks = requests.get(url_todo)
 
-    j = {}
+    j = OrderedDict()
     data = []
     with open(file_name, 'w') as c:
         key = argv[1]
         for task in tasks.json():
             if task['userId'] == id:
-                task_dict = {}
+                task_dict = OrderedDict()
                 task_dict["task"] = task['title']
                 task_dict["completed"] = task["completed"]
                 task_dict['username'] = user_name
                 data.append(task_dict)
         j[key] = data
-        c.write(str(j))
+        json.dump(j, c)
